@@ -1,6 +1,6 @@
 var DeviceConfig = require('./device_config');
 
-function init(machine) {
+exports.init = function(machine) {
   var propsToCheck = ['_registry', '_log', '_pubsub'];
   
   propsToCheck.forEach(function(k) {
@@ -15,26 +15,6 @@ function init(machine) {
 
   return machine;
 }
-exports.init = init;
-
-exports.configure = function(/* constructor, ...constructorArgs */) {
-  var args = Array.prototype.slice.call(arguments);
-  var constructor = args[0];
-  var constructorArgs = args.length > 1 ? args.slice(1) : undefined;
-
-  var machine;
-
-  if (constructor.prototype) {
-    machine = Object.create(constructor.prototype);
-    machine.constructor.apply(machine, constructorArgs);
-  } else if (constructor.init) {
-    machine = constructor;
-  }
-
-  machine = init(machine);
-
-  return machine;
-};
 
 exports.create = function(/* constructor, ...constructorArgs */) {
   var args = Array.prototype.slice.call(arguments);
@@ -52,4 +32,3 @@ exports.create = function(/* constructor, ...constructorArgs */) {
 
   return machine;
 };
-
