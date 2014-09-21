@@ -1,6 +1,6 @@
 var DeviceConfig = require('./device_config');
 
-exports.config = function config(machine) {
+var config = exports.config = function(machine) {
   var propsToCheck = ['_registry', '_log', '_pubsub'];
   
   propsToCheck.forEach(function(k) {
