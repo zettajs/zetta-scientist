@@ -2,6 +2,7 @@ var DeviceConfig = module.exports = function() {
   this._name = null;
   this._type = null;
   this._state = null;
+  this._docFilename = null;
   this.streams = {};
   this.monitors = [];
   this.allowed = {};
@@ -52,4 +53,8 @@ DeviceConfig.prototype.stream = function(name, handler, options) {
     options: options
   };
   return this;
+};
+
+DeviceConfig.prototype.doc = function(filename) {
+  this._docFilename = filename;
 };
