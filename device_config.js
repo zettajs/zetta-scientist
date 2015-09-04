@@ -4,6 +4,7 @@ var DeviceConfig = module.exports = function() {
   this._state = null;
   this._remoteFetch = null;
   this._remoteUpdate = null;
+  this._remoteDestroy = null;
   this.streams = {};
   this.monitors = [];
   this.allowed = {};
@@ -58,9 +59,15 @@ DeviceConfig.prototype.stream = function(name, handler, options) {
 
 DeviceConfig.prototype.remoteFetch = function(handler) {
   this._remoteFetch = handler;
+  return this;
 };
 
 DeviceConfig.prototype.remoteUpdate = function(handler) {
   this._remoteUpdate = handler;
+  return this;
 };
 
+DeviceConfig.prototype.remoteDestroy = function(handler) {
+  this._remoteDestroy = handler;  
+  return this;
+};
