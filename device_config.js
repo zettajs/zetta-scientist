@@ -59,12 +59,15 @@ DeviceConfig.prototype.stream = function(name, handler, options) {
 
 DeviceConfig.prototype.remoteFetch = function(handler) {
   this._remoteFetch = handler;
+  return this;
 };
 
 DeviceConfig.prototype.remoteUpdate = function(handler) {
   this._remoteUpdate = handler;
+  return this;
 };
 
 DeviceConfig.prototype.remoteDestroy = function(handler) {
   this._remoteDestroy = handler;  
+  return this;
 };
