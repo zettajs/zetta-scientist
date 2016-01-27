@@ -6,7 +6,7 @@ var DeviceConfig = module.exports = function() {
   this._remoteUpdate = null;
   this._remoteDestroy = null;
   this.streams = {};
-  this.monitors = [];
+  this.monitors = {};
   this.allowed = {};
   this.transitions = {};
 };
@@ -44,8 +44,11 @@ DeviceConfig.prototype.map = function(name, handler, fields) {
   return this;
 };
 
-DeviceConfig.prototype.monitor = function(name) {
-  this.monitors.push(name);
+DeviceConfig.prototype.monitor = function(name, options) {
+  this.monitors[name] = {
+    options: options
+  };
+
   return this;
 };
 
