@@ -44,18 +44,11 @@ DeviceConfig.prototype.map = function(name, handler, fields) {
   return this;
 };
 
-DeviceConfig.prototype.monitor = function(name, enabled) {
-  // default to enabled if not provided
-  if(enabled === undefined) {
-    enabled = true;
-  } else {
-    enabled = !!enabled;
-  }
-
+DeviceConfig.prototype.monitor = function(name, options) {
   this.monitors[name] = {
-    enabled: enabled
+    options: options
   };
-  
+
   return this;
 };
 
