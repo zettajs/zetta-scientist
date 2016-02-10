@@ -33,6 +33,10 @@ DeviceConfig.prototype.when = function(state, options) {
     return this;
   }
 
+  if (state in this.allowed) {
+    console.log("Warning : Device state '" + state + "' has been added earlier. Overriding with new allowed values.");
+  }
+
   this.allowed[state] = allow;
   return this;
 };
