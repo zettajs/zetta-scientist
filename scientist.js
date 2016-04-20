@@ -1,4 +1,4 @@
-var DeviceConfig = require('./device_config');
+var DefaultDeviceConfig = require('./default_device_config');
 
 var config = exports.config = function(machine) {
   var propsToCheck = ['_registry', '_log', '_pubsub'];
@@ -8,6 +8,12 @@ var config = exports.config = function(machine) {
       throw new Error('Trying to initialize device without needed property set.');
     } 
   });
+
+  var DeviceConfig = machine.DeviceConfig;
+  if (DeviceConfig === undefined) {
+    console.error('Deprecation Warning: Device driver using old version of zetta-device upgrade to >= v0.19.0');
+    DeviceConfig = DefaultDeviceConfig;
+  }
   
   var config = new DeviceConfig();  
   machine.init(config);
