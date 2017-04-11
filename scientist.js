@@ -35,8 +35,7 @@ exports.create = function(/* constructor, ...constructorArgs */) {
   var machine;
 
   if (constructor.prototype) {
-    machine = Object.create(constructor.prototype);
-    machine.constructor.apply(machine, constructorArgs);
+    machine = new (Function.prototype.bind.apply(constructor, [null].concat(constructorArgs)));
   } else if (constructor.init) {
     machine = constructor;
   }
